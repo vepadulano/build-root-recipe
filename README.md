@@ -47,7 +47,7 @@ options:
                         sign and quoted , as in: 'python launch_build.py --opts="-DOpt1=ON -DOpt2=OFF"'
 ```
 
-It creates the following directories in the curreng working directory:
+It creates the following directories in the current working directory:
 
 ```
 - rootsrc/
@@ -58,7 +58,7 @@ It creates the following directories in the curreng working directory:
 
 * `rootsrc` is the directory where the ROOT source resides. If not already
   present, it will be downloaded.
-* `roottest` is the directory where the seoarate testing repository roottest
+* `roottest` is the directory where the separate testing repository roottest
   source resides. If not already present, it will be downloaded.
 * `rootbuild` and `rootinstall` store respectively build and install directories
   produced by CMake. Every time the `launch_build.py` script is launched, it
