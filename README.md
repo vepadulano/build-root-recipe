@@ -10,18 +10,28 @@ ROOT depends on other libraries, some of them are necessary also in the build
 process. You can find a list dependencies [on our website](https://root.cern/install/dependencies/).
 Follow the instructions to install the dependencies on your system.
 
+There are also some Python optional runtime dependencies which are nonetheless
+useful in a development environment. You can find them listed in [requirements.txt](https://raw.githubusercontent.com/root-project/root/master/requirements.txt).
+
 ## Building ROOT
 
 The ROOT source code is built via [CMake](https://cmake.org/). Usually in a
 development environment one would need a build of ROOT with debug symbols, i.e.
 `-DCMAKE_BUILD_TYPE=RelWithDebInfo` or `-DCMAKE_BUILD_TYPE=Debug`. Detailed
-instructions on how to build ROOT from source are available [on our website](https://root.cern/install/build_from_source/),
-but it is also suggested to use the Python script `launch_build.py` available in
-this repository.
+instructions on how to build ROOT from source are available [on our website](https://root.cern/install/build_from_source/).
+
+## Recipes for installation
+
+### Step-by-step instructions
+
+Detailed instructions are available in the document [step_by_step_instructions.md](step_by_step_instructions.md)
+which is a walkthrough of all the steps required to build ROOT and things to
+look out for.
 
 ### The build script
 
-The `launch_build.py` script can help you streamline the building process:
+Alternatively, an automated [Python build script](launch_build.py) is available.
+This can help you streamline the building process:
 
 ```python
 $: python launch_build.py -h
