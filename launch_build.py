@@ -25,15 +25,16 @@ def create_directories_if_necessary() -> Iterable[str]:
     return root_home, root_build, root_install
 
 
+# builtin_glew is necessary on latest CMake versions https://gitlab.kitware.com/cmake/cmake/-/issues/19662
 build_opts = {
-    "default": "-DCMAKE_BUILD_TYPE=RelWithDebInfo",
+    "default": "-DCMAKE_BUILD_TYPE=RelWithDebInfo -Dbuiltin_glew=ON",
     "debug": (
         "-DCMAKE_BUILD_TYPE=Debug -Dtesting=ON -Droottest=ON "
-        "-Dtest_distrdf_pyspark=ON -Dtest_distrdf_dask=ON"
+        "-Dtest_distrdf_pyspark=ON -Dtest_distrdf_dask=ON -Dbuiltin_glew=ON"
     ),
     "relwithdebinfo": (
         "-DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON "
-        "-Dtest_distrdf_pyspark=ON -Dtest_distrdf_dask=ON"
+        "-Dtest_distrdf_pyspark=ON -Dtest_distrdf_dask=ON -Dbuiltin_glew=ON"
     ),
 }
 
