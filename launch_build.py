@@ -3,6 +3,7 @@ import os
 import re
 import shlex
 import subprocess
+import textwrap
 from typing import Iterable
 
 
@@ -26,7 +27,7 @@ def create_directories_if_necessary() -> Iterable[str]:
 
 
 # builtin_glew is necessary on latest CMake versions https://gitlab.kitware.com/cmake/cmake/-/issues/19662
-build_opts = {
+build_config = {
     "default": "-DCMAKE_BUILD_TYPE=RelWithDebInfo -Dbuiltin_glew=ON",
     "debug": (
         "-DCMAKE_BUILD_TYPE=Debug -Dtesting=ON -Droottest=ON "
@@ -44,16 +45,24 @@ parser.add_argument("--njobs", help="As in 'cmake -jNJOBS'",
 parser.add_argument(
     "--name", help=("The name of this build. If specified, it takes "
                     "precedence over the automatic choice for a name"))
-parser.add_argument("--mode", help="Build process mode",
-                    choices=list(build_opts.keys()), default="default")
-parser.add_argument("--opts", help=(
-    "List of cmake options. This is exclusive with the choices from the 'mode' "
-    "option. It is crucial to specify this option with an equal sign and quoted "
-    ", as in: 'python launch_build.py --opts=\"-DOpt1=ON -DOpt2=OFF\"'"
-),
+group = parser.add_argument_group(
+    "CMake configuration",
+    textwrap.dedent("""
+    The 'mode' option allows to choose one of the predefined CMake configuration
+    strings. Otherwise, specify a custom string via the 'config' option
+    """))
+exclusive_group = group.add_mutually_exclusive_group(required=True)
+exclusive_group.add_argument(
+    "-m", "--mode",
+    help="One of the predefined CMake configuration modes",
+    choices=list(build_config.keys()), default="default")
+exclusive_group.add_argument(
+    "-c", "--config", help=(textwrap.dedent("""
+    Custom list of CMake options. Specify this option with an equal sign and
+    quoted, as in: '--config=\"-DOpt1=ON -DOpt2=OFF\"'
+    """)),
     nargs="*")
 args = parser.parse_args()
-print(args.opts)
 
 
 def launch_build():
@@ -62,16 +71,18 @@ def launch_build():
 
     if args.name is None:
         # Figure out a sensible name to give to the build/install directories
-        p = subprocess.run(["git", "status"], cwd=root_home,
-                           check=True, capture_output=True)
+        p = subprocess.run(
+            ["git", "status"], cwd=root_home,
+            check=True, capture_output=True)
         gitstatus = p.stdout.decode()
         pattern = re.compile("^On branch (?P<branch>.*)")
         branch = pattern.match(gitstatus).groupdict()["branch"]
 
         if branch == "master":
             # Further specify builds on the master branch with the commit SHA
-            p = subprocess.run(["git", "rev-parse", "--short", "HEAD"],
-                               cwd=root_home, check=True, capture_output=True)
+            p = subprocess.run(
+                ["git", "rev-parse", "--short", "HEAD"],
+                cwd=root_home, check=True, capture_output=True)
             sha = p.stdout.decode().rstrip()
             branch += "-" + sha
 
@@ -92,12 +103,12 @@ def launch_build():
         os.mkdir(install_dir)
 
     if not os.path.exists(os.path.join(build_dir, "CMakeCache.txt")):
-        base_opts = shlex.split("cmake -GNinja -Dccache=ON")
-        mode_opts = args.opts[0] if args.opts else build_opts[args.mode]
-        mode_opts = shlex.split(mode_opts)
-        dirs_opts = shlex.split(
+        base_config = shlex.split("cmake -GNinja -Dccache=ON")
+        mode_config = args.config[0] if args.config else build_config[args.mode]
+        mode_config = shlex.split(mode_config)
+        dirs_config = shlex.split(
             f"-DCMAKE_INSTALL_PREFIX={install_dir} -B {build_dir} -S {root_home}")
-        configure_command = base_opts + mode_opts + dirs_opts
+        configure_command = base_config + mode_config + dirs_config
         subprocess.run(configure_command, check=True)
 
     njobs = args.njobs
