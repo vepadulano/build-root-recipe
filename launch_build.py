@@ -40,28 +40,34 @@ build_config = {
 }
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--njobs", help="As in 'cmake -jNJOBS'",
-                    default=os.cpu_count(), type=int)
+parser.add_argument("-j", help="As in 'cmake -jNJOBS'",
+                    default=os.cpu_count(), type=int, dest="njobs")
 parser.add_argument(
-    "--name", help=("The name of this build. If specified, it takes "
-                    "precedence over the automatic choice for a name"))
+    "-n",
+    help=("The name of this build. If specified, it takes "
+          "precedence over the automatic choice for a name"),
+    dest="name")
 group = parser.add_argument_group(
-    "CMake configuration",
+    "CMake configuration [required]",
     textwrap.dedent("""
     The 'mode' option allows to choose one of the predefined CMake configuration
     strings. Otherwise, specify a custom string via the 'config' option
     """))
 exclusive_group = group.add_mutually_exclusive_group(required=True)
 exclusive_group.add_argument(
-    "-m", "--mode",
+    "-m",
     help="One of the predefined CMake configuration modes",
-    choices=list(build_config.keys()), default="default")
+    choices=list(build_config.keys()),
+    default="default",
+    dest="mode")
 exclusive_group.add_argument(
-    "-c", "--config", help=(textwrap.dedent("""
+    "-c",
+    help=(textwrap.dedent("""
     Custom list of CMake options. Specify this option with an equal sign and
     quoted, as in: '--config=\"-DOpt1=ON -DOpt2=OFF\"'
     """)),
-    nargs="*")
+    nargs="*",
+    dest="config")
 args = parser.parse_args()
 
 
