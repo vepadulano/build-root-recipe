@@ -37,7 +37,7 @@ This can help you streamline the building process:
 $: python launch_build.py -h
 usage: launch_build.py [-h] [-j NJOBS] [-n NAME] (-m {default,debug,relwithdebinfo} | -c [CONFIG ...])
 
-options:
+optional arguments:
   -h, --help            show this help message and exit
   -j NJOBS              As in 'cmake -jNJOBS'
   -n NAME               The name of this build. If specified, it takes precedence over the automatic choice for a name
@@ -47,7 +47,7 @@ CMake configuration [required]:
 
   -m {default,debug,relwithdebinfo}
                         One of the predefined CMake configuration modes
-  -c [CONFIG ...]       Custom list of CMake options. Specify this option with an equal sign and quoted, as in: '--config="-DOpt1=ON -DOpt2=OFF"'
+  -c [CONFIG ...]       Custom list of CMake options. Specify this option with an equal sign and quoted, as in:'-c="-DOpt1=ON -DOpt2=OFF"'
 ```
 
 It creates the following directories in the current working directory:
@@ -77,10 +77,10 @@ It creates the following directories in the current working directory:
   ```
 
 The script launches a CMake build with the appropriate flags, depending on
-either one of the already available modes (see the `mode` option) or the flags
-passed by the `--opts` option. For example:
+either one of the already available modes (see the `m` option) or the flags
+passed via the `c` option. For example:
 
 ```
-$: python launch_build.py --mode relwithdebinfo
-$: python launch_build.py --name mybuild --opts="-Dminimal=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo"
+$: python launch_build.py -m relwithdebinfo
+$: python launch_build.py -n mybuild -c="-Dminimal=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 ```

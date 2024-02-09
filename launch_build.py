@@ -64,7 +64,7 @@ exclusive_group.add_argument(
     "-c",
     help=(textwrap.dedent("""
     Custom list of CMake options. Specify this option with an equal sign and
-    quoted, as in: '--config=\"-DOpt1=ON -DOpt2=OFF\"'
+    quoted, as in: '-c=\"-DOpt1=ON -DOpt2=OFF\"'
     """)),
     nargs="*",
     dest="config")
