@@ -37,6 +37,9 @@ build_config = {
         "-DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON "
         "-Dtest_distrdf_pyspark=ON -Dtest_distrdf_dask=ON -Dbuiltin_glew=ON"
     ),
+    "minimal": (
+        "-DCMAKE_BUILD_TYPE=RelWithDebInfo -Dminimal=ON"
+    ),
 }
 
 parser = argparse.ArgumentParser()

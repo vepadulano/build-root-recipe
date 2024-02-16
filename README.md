@@ -35,9 +35,9 @@ This can help you streamline the building process:
 
 ```bash
 $: python launch_build.py -h
-usage: launch_build.py [-h] [-j NJOBS] [-n NAME] (-m {default,debug,relwithdebinfo} | -c [CONFIG ...])
+usage: launch_build.py [-h] [-j NJOBS] [-n NAME] (-m {default,debug,relwithdebinfo,minimal} | -c [CONFIG ...])
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -j NJOBS              As in 'cmake -jNJOBS'
   -n NAME               The name of this build. If specified, it takes precedence over the automatic choice for a name
@@ -45,9 +45,9 @@ optional arguments:
 CMake configuration [required]:
   The 'mode' option allows to choose one of the predefined CMake configuration strings. Otherwise, specify a custom string via the 'config' option
 
-  -m {default,debug,relwithdebinfo}
+  -m {default,debug,relwithdebinfo,minimal}
                         One of the predefined CMake configuration modes
-  -c [CONFIG ...]       Custom list of CMake options. Specify this option with an equal sign and quoted, as in:'-c="-DOpt1=ON -DOpt2=OFF"'
+  -c [CONFIG ...]       Custom list of CMake options. Specify this option with an equal sign and quoted, as in: '-c="-DOpt1=ON -DOpt2=OFF"'
 ```
 
 It creates the following directories in the current working directory:
