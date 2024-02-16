@@ -21,6 +21,20 @@ $: git clone https://github.com/YOURUSERNAME/root
 $: git clone https://github.com/YOURUSERNAME/roottest
 ```
 
+To track changes in the main repositories, add the `upstream` remotes.
+
+Inside the `root` directory:
+
+```
+$: git remote add upstream https://github.com/root-project/root
+```
+
+Inside the `roottest` directory:
+
+```
+$: git remote add upstream https://github.com/root-project/roottest
+```
+
 ## 3. Create a build and install directories
 
 To keep things clean, it is suggested to create a separate directory for the

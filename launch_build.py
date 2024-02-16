@@ -12,10 +12,10 @@ def create_directories_if_necessary() -> Iterable[str]:
     root_home = os.path.join(cwd, "root")
     if not os.path.exists(root_home):
         subprocess.run(shlex.split(
-            "git clone https://github.com/root-project/root.git"), check=True)
+            "git clone -o upstream https://github.com/root-project/root.git"), check=True)
     if not os.path.exists(os.path.join(cwd, "roottest")):
         subprocess.run(shlex.split(
-            "git clone https://github.com/root-project/roottest.git"), check=True)
+            "git clone -o upstream https://github.com/root-project/roottest.git"), check=True)
     root_build = os.path.join(cwd, "rootbuild")
     if not os.path.exists(root_build):
         os.mkdir(root_build)
