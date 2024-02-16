@@ -7,8 +7,8 @@ modifications in the form of GitHub PRs. In some cases the modifications will
 need to go in `roottest`, so it's better to clone both. Go on the respective
 websites:
 
-* https://github.com/root-project/root
-* https://github.com/root-project/roottest
+* <https://github.com/root-project/root>
+* <https://github.com/root-project/roottest>
 
 And click on the `Fork` button in the top right of the web UI.
 
@@ -16,7 +16,7 @@ And click on the `Fork` button in the top right of the web UI.
 
 You can now clone both repositories on your machine, e.g. via
 
-```
+```bash
 $: git clone https://github.com/YOURUSERNAME/root
 $: git clone https://github.com/YOURUSERNAME/roottest
 ```
@@ -25,13 +25,13 @@ To track changes in the main repositories, add the `upstream` remotes.
 
 Inside the `root` directory:
 
-```
+```bash
 $: git remote add upstream https://github.com/root-project/root
 ```
 
 Inside the `roottest` directory:
 
-```
+```bash
 $: git remote add upstream https://github.com/root-project/roottest
 ```
 
@@ -40,7 +40,7 @@ $: git remote add upstream https://github.com/root-project/roottest
 To keep things clean, it is suggested to create a separate directory for the
 build and for the installation.
 
-```
+```bash
 $: mkdir mybuild myinstall
 ```
 
@@ -50,16 +50,17 @@ There are many [configuration options](https://root.cern/install/build_from_sour
 For the purposes of development and testing, the following configuration is
 suggested:
 
-```
+```bash
 $: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=myinstall -B mybuild -S root
 ```
+
 The process of launching the Cmake build may be sped up by using the ccache package, if it is installed in the system. To activate it, add `-Dccache=ON` to variables.
 
 ## 5. Build and install
 
 Finally, you can launch the CMake build via:
 
-```
+```bash
 $: cmake --build mybuild --target install -jNPROC
 ```
 

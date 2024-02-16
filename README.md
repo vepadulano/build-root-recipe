@@ -52,7 +52,7 @@ CMake configuration [required]:
 
 It creates the following directories in the current working directory:
 
-```
+```text
 - root/
 - roottest/
 - rootbuild/
@@ -67,7 +67,8 @@ It creates the following directories in the current working directory:
   produced by CMake. Every time the `launch_build.py` script is launched, it
   creates two separate sub-directories for the current build and installation,
   for example:
-  ```
+
+  ```text
   - rootbuild/
     --> build1/
     --> build2/
@@ -80,7 +81,7 @@ The script launches a CMake build with the appropriate flags, depending on
 either one of the already available modes (see the `m` option) or the flags
 passed via the `c` option. For example:
 
-```
+```bash
 $: python launch_build.py -m relwithdebinfo
 $: python launch_build.py -n mybuild -c="-Dminimal=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 ```
