@@ -53,13 +53,13 @@ CMake configuration [required]:
 It creates the following directories in the current working directory:
 
 ```
-- rootsrc/
+- root/
 - roottest/
 - rootbuild/
 - rootinstall/
 ```
 
-* `rootsrc` is the directory where the ROOT source resides. If not already
+* `root` is the directory where the ROOT source resides. If not already
   present, it will be downloaded.
 * `roottest` is the directory where the separate testing repository roottest
   source resides. If not already present, it will be downloaded.
