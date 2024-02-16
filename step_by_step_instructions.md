@@ -35,13 +35,13 @@ Inside the `roottest` directory:
 $: git remote add upstream https://github.com/root-project/roottest
 ```
 
-## 3. Create a build and install directories
+## 3. Create build and install directories
 
-To keep things clean, it is suggested to create a separate directory for the
-build and for the installation.
+To keep things clean, it is suggested to create separate directories for the
+builds and for the installations.
 
 ```bash
-$: mkdir mybuild myinstall
+$: mkdir rootbuild rootinstall
 ```
 
 ## 4. Configure the CMake build
@@ -51,7 +51,7 @@ For the purposes of development and testing, the following configuration is
 suggested:
 
 ```bash
-$: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=myinstall -B mybuild -S root
+$: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=rootinstall/myinstall -B rootbuild/mybuild -S root
 ```
 
 The process of launching the Cmake build may be sped up by using the ccache package, if it is installed in the system. To activate it, add `-Dccache=ON` to variables.
@@ -61,7 +61,7 @@ The process of launching the Cmake build may be sped up by using the ccache pack
 Finally, you can launch the CMake build via:
 
 ```bash
-$: cmake --build mybuild --target install -jNPROC
+$: cmake --build rootbuild/mybuild --target install -jNPROC
 ```
 
 Where `NPROC` is the number of available cores you want to send in parallel for the build.
