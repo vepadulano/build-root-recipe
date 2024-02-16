@@ -17,8 +17,8 @@ And click on the `Fork` button in the top right of the web UI.
 You can now clone both repositories on your machine, e.g. via
 
 ```bash
-$: git clone https://github.com/YOURUSERNAME/root
-$: git clone https://github.com/YOURUSERNAME/roottest
+$: git clone https://github.com/YOURUSERNAME/root.git
+$: git clone https://github.com/YOURUSERNAME/roottest.git
 ```
 
 To track changes in the main repositories, add the `upstream` remotes.
@@ -26,13 +26,13 @@ To track changes in the main repositories, add the `upstream` remotes.
 Inside the `root` directory:
 
 ```bash
-$: git remote add upstream https://github.com/root-project/root
+$: git remote add upstream https://github.com/root-project/root.git
 ```
 
 Inside the `roottest` directory:
 
 ```bash
-$: git remote add upstream https://github.com/root-project/roottest
+$: git remote add upstream https://github.com/root-project/roottest.git
 ```
 
 ## 3. Create build and install directories
