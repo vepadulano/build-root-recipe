@@ -37,9 +37,9 @@ For the purposes of development and testing, the following configuration is
 suggested:
 
 ```
-$: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=myinstall -Dccache=ON -B mybuild -S root
+$: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=myinstall -B mybuild -S root
 ```
-
+The process of launching the Cmake build may be sped up by using the ccache package, if it is installed in the system. To activate it, add `-Dccache=ON` to variables.
 
 ## 5. Build and install
 
