@@ -37,7 +37,7 @@ For the purposes of development and testing, the following configuration is
 suggested:
 
 ```
-$: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=myinstall -B mybuild -S root
+$: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=myinstall -Dccache=ON -B mybuild -S root
 ```
 
 
@@ -49,4 +49,4 @@ Finally, you can launch the CMake build via:
 $: cmake --build mybuild --target install -jNPROC
 ```
 
-Where `NPROC` is the number of jobs you want to send in parallel for the build.
+Where `NPROC` is the number of available cores you want to send in parallel for the build.
