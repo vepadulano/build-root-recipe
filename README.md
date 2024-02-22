@@ -84,3 +84,8 @@ passed via the `c` option. For example:
 $: python launch_build.py -m relwithdebinfo
 $: python launch_build.py -n mybuild -c="-Dminimal=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 ```
+## Setting up ROOT in your environment
+To set up ROOT in the environment use the command:
+```
+$ source <installdir>/bin/thisroot.sh
+```
