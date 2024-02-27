@@ -7,8 +7,8 @@ modifications in the form of GitHub PRs. In some cases the modifications will
 need to go in `roottest`, so it's better to clone both. Go on the respective
 websites:
 
-* https://github.com/root-project/root
-* https://github.com/root-project/roottest
+* <https://github.com/root-project/root>
+* <https://github.com/root-project/roottest>
 
 And click on the `Fork` button in the top right of the web UI.
 
@@ -16,18 +16,32 @@ And click on the `Fork` button in the top right of the web UI.
 
 You can now clone both repositories on your machine, e.g. via
 
-```
-$: git clone https://github.com/YOURUSERNAME/root
-$: git clone https://github.com/YOURUSERNAME/roottest
+```bash
+$: git clone https://github.com/YOURUSERNAME/root.git
+$: git clone https://github.com/YOURUSERNAME/roottest.git
 ```
 
-## 3. Create a build and install directories
+To track changes in the main repositories, add the `upstream` remotes.
 
-To keep things clean, it is suggested to create a separate directory for the
-build and for the installation.
+Inside the `root` directory:
 
+```bash
+$: git remote add upstream https://github.com/root-project/root.git
 ```
-$: mkdir mybuild myinstall
+
+Inside the `roottest` directory:
+
+```bash
+$: git remote add upstream https://github.com/root-project/roottest.git
+```
+
+## 3. Create build and install directories
+
+To keep things clean, it is suggested to create separate directories for the
+builds and for the installations.
+
+```bash
+$: mkdir rootbuild rootinstall
 ```
 
 ## 4. Configure the CMake build
@@ -36,17 +50,18 @@ There are many [configuration options](https://root.cern/install/build_from_sour
 For the purposes of development and testing, the following configuration is
 suggested:
 
+```bash
+$: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=rootinstall/myinstall -B rootbuild/mybuild -S root
 ```
-$: cmake -DCMAKE_BUILD_TYPE=RelWithDebInfo -Dtesting=ON -Droottest=ON -DCMAKE_INSTALL_PREFIX=myinstall -B mybuild -S root
-```
+
 The process of launching the Cmake build may be sped up by using the ccache package, if it is installed in the system. To activate it, add `-Dccache=ON` to variables.
 
 ## 5. Build and install
 
 Finally, you can launch the CMake build via:
 
-```
-$: cmake --build mybuild --target install -jNPROC
+```bash
+$: cmake --build rootbuild/mybuild --target install -jNPROC
 ```
 
 Where `NPROC` is the number of available cores you want to send in parallel for the build.
