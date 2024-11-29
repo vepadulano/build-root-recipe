@@ -85,3 +85,14 @@ passed via the `c` option. For example:
 $: python launch_build.py -m relwithdebinfo
 $: python launch_build.py -n mybuild -c="-Dminimal=ON -DCMAKE_BUILD_TYPE=RelWithDebInfo"
 ```
+
+### Activating ROOT in your environment after installation
+
+After the CMake build has finished without errors, you can set up your environment
+to use the ROOT installation you just created via a `thisroot` script, for
+example on a Unix system with the bash shell:
+
+```
+$: source <build_or_install_dir>/bin/thisroot.sh
+```
+
