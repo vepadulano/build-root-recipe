@@ -1,3 +1,7 @@
+# Note
+
+This repository is not maintained anymore. Please refer to https://github.com/root-project/build-root-recipe.
+
 # General guidelines and recipes to create a development environment with ROOT
 
 Developing ROOT requires being able to build the project from source and knowing
